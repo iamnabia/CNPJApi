@@ -1,0 +1,81 @@
+Empresa
+Id : int
+Nome : string
+CNPJ : string
+E-mail : string
+Telefone : string
+
+-----------------
+
++ ListarTodos() => GET
++ BuscarPorId() => GET
++ BuscarPorNomeAproximado() => GET
++ BuscarPorCNPJ() => GET
++ Adicionar() => POST
++ Atualizar() => PUT
++ Excluir() => DELETE
+
+___________________
+
+ListarTodos -
+    [HttpGet]
+    public async Task<IActionResult> Get()
+    {
+        try
+        {
+            List<Empresa> lista = await _context.TB_EMPRESAS.ToListAsync();
+            return Ok(lista);
+        }
+        catch (System.Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+___________________
+BuscarPorId -
+    [HttpGet("{BuscarId/{Id}")]
+    public async Task<IActionResult> GetSingle(int id)
+    {
+        try
+        {
+            Empresa? busca = await _context.TB_EMPRESAS.FirstOrDefaultAsync(x => x.Id == id);
+            return Ok(busca);
+        }
+        catch (System.Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+___________________
+BuscarPorNomeAproximado -
+ [HttpGet("BuscarNomeAproximado/{nome}")]
+        public async Task<IActionResult> GetByNomeAproximado(string nome)  {
+            try
+            {
+                List<Empresa> lista = await _context.TB_EMPRESAS 
+                    .Where(p => p.Nome.ToLower().Contains(nome.ToLower()))
+                    .ToListAsync();
+                    
+                return Ok(lista);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        } 
+___________________
+BuscarPorCNPJ -
+    [HttpGet("{BuscarCNPJ/{CNPJ}")]
+    public async Task<IActionResult> GetSingle(string cnpj)
+    {
+        try
+        {
+            Empresa? busca = await _context.TB_EMPRESAS.FirstOrDefaultAsync(empresa => empresa.CNPJ.Equals(cnpj));
+            return Ok(busca);
+        }
+        catch (System.Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+

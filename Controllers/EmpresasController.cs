@@ -21,6 +21,15 @@ namespace CNPJApi.Controllers
             _context = context;
         }
 
+        private async Task<bool> NomeEmUso(string nome)
+        {
+            if (await _context.TB_EMPRESAS.AnyAsync(x => x.Nome.ToLower() == nome.ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -78,6 +87,27 @@ namespace CNPJApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+         [HttpPost("Adicionar")]
+        public async Task<IActionResult> Add(Empresa novaEmpresa)
+        {
+            try
+            {
+              
+            if (await NomeEmUso(novaEmpresa.Nome))
+                throw new Exception("Empresa com mesmo nome já cadastrada");
+
+            await _context.TB_EMPRESAS.AddAsync(novaEmpresa);
+            await _context.SaveChangesAsync();
+
+                return Ok("Eempresa cadastrada com sucesso! ");
+            }
+            catch (SystemException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        
         }
 
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oK0e2P5KmpThNchapMPvZY/cRchIT9pWX0FajBJl9QPmZs1a8TOyTvecF7Ox5xIUS+8D4hO9CbtzyLI7ETJ5LQ==",
+  "dgSpecHash": "TzwFzraeD9H1iKtK/iz437+YZIGgdW2KuzQJQbSZIglENd2YBW6/QpyfB17h4zRs7W3pyc8d5GSFEQzcAmnqAw==",
   "success": true,
-  "projectFilePath": "D:\\CNPJApi\\CNPJApi\\CNPJApi.csproj",
+  "projectFilePath": "D:\\aninha\\CNPJApi\\CNPJApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\etechas\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\etechas\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
